@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Haiku — What it can do today (Sep 2026)</title>
+  <meta name="description" content="Simple overview of Flit Haiku features for stakeholders, with when each capability shipped." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: hsl(42 28% 93%);
+      --paper: hsl(40 33% 98%);
+      --ink: hsl(30 10% 15%);
+      --muted: hsl(30 8% 38%);
+      --line: hsl(32 16% 80%);
+      --gold: hsl(38 82% 58%);
+      --soft: hsl(38 70% 92%);
+      --teal: hsl(174 55% 28%);
+      --ok: hsl(152 45% 90%);
+      --ok-ink: hsl(152 55% 22%);
+      --card: #fff;
+      --shadow: 0 1px 2px hsl(30 20% 20% / 0.06), 0 14px 36px hsl(30 25% 20% / 0.08);
+      --sans: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      background:
+        radial-gradient(1000px 480px at 10% -10%, hsl(38 82% 58% / 0.2), transparent 55%),
+        radial-gradient(800px 420px at 100% 0%, hsl(32 78% 56% / 0.16), transparent 50%),
+        var(--bg);
+    }
+    a { color: var(--teal); }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 28px 18px 80px; }
+
+    .hero {
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 28px 26px 22px;
+      margin-bottom: 18px;
+    }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .pill {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
+      padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: #fff;
+    }
+    .pill.gold { background: var(--soft); border-color: hsl(38 60% 70%); }
+    .pill.ok { background: var(--ok); color: var(--ok-ink); border-color: hsl(152 40% 70%); }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.85rem, 4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .lede { margin: 0; color: var(--muted); max-width: 52ch; }
+    .share {
+      margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+      font-size: 14px; color: var(--muted);
+    }
+    .share strong { color: var(--ink); }
+    .share a { word-break: break-all; }
+
+    .toc {
+      background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+      box-shadow: var(--shadow); padding: 16px 18px; margin-bottom: 18px;
+    }
+    .toc h2 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+    .toc ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px 10px; }
+    .toc a {
+      display: block; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 14px;
+      padding: 7px 9px; border-radius: 10px;
+    }
+    .toc a:hover { background: var(--soft); }
+
+    .block {
+      background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+      box-shadow: var(--shadow); padding: 20px 20px 16px; margin-bottom: 14px;
+    }
+    .block h2 {
+      margin: 0 0 4px; font-size: 1.25rem; letter-spacing: -0.02em;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    }
+    .when {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+      padding: 3px 9px; border-radius: 999px; background: var(--soft);
+    }
+    .intro { margin: 0 0 12px; color: var(--muted); font-size: 15px; }
+
+    .feat { border-top: 1px solid hsl(32 16% 90%); padding: 12px 0; }
+    .feat:first-of-type { border-top: none; padding-top: 0; }
+    .feat h3 { margin: 0 0 4px; font-size: 16px; font-weight: 700; }
+    .feat p { margin: 0; color: var(--muted); font-size: 15px; }
+    .feat .date {
+      display: inline-block; margin-top: 6px;
+      font-size: 13px; font-weight: 600; color: hsl(30 20% 35%);
+      background: hsl(42 28% 96%); border: 1px solid var(--line);
+      padding: 2px 8px; border-radius: 999px;
+    }
+
+    .timeline { margin: 4px 0 0; padding-left: 16px; border-left: 3px solid hsl(38 60% 75%); }
+    .tl { padding: 0 0 14px 12px; position: relative; }
+    .tl::before {
+      content: ""; position: absolute; left: -21px; top: 6px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--gold); border: 2px solid #fff;
+    }
+    .tl strong { display: block; font-size: 14px; }
+    .tl span { color: var(--muted); font-size: 14px; }
+
+    .roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    .role {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px;
+    }
+    .role h3 { margin: 0 0 4px; font-size: 14px; }
+    .role p { margin: 0; font-size: 13px; color: var(--muted); }
+
+    .soon {
+      background: hsl(38 80% 94%); border: 1px solid hsl(38 60% 75%);
+      border-radius: 14px; padding: 12px 14px; margin-top: 8px;
+      font-size: 14px; color: hsl(24 70% 28%);
+    }
+
+    footer { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
+
+    @media print {
+      body { background: #fff; }
+      .wrap { max-width: none; }
+      .block, .hero, .toc { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="pills">
+        <span class="pill gold">Flit Haiku</span>
+        <span class="pill ok">Ready for stakeholders</span>
+        <span class="pill">Updated 24 Sep 2026</span>
+      </div>
+      <h1>What Haiku can do today</h1>
+      <p class="lede">
+        A plain-English map of Haiku for brands and agencies —
+        planning posts, collaborating with creators, publishing, and reporting —
+        plus roughly when each piece shipped.
+      </p>
+      <div class="share">
+        <strong>Share this page:</strong><br />
+        <a id="share-link" href="https://htmlpreview.github.io/?https://github.com/notsoocool/haiku-features/blob/main/index.html">https://htmlpreview.github.io/?https://github.com/notsoocool/haiku-features/blob/main/index.html</a>
+        <br /><br />
+        <span style="font-size:13px">Repo:
+          <a href="https://github.com/notsoocool/haiku-features">github.com/notsoocool/haiku-features</a>
+        </span>
+      </div>
+    </header>
+
+    <nav class="toc">
+      <h2>Jump to a section</h2>
+      <ul>
+        <li><a href="#story">The story so far</a></li>
+        <li><a href="#rooms">Rooms &amp; team access</a></li>
+        <li><a href="#plan">Planning the work</a></li>
+        <li><a href="#board">Board &amp; calendar</a></li>
+        <li><a href="#table">Table (spreadsheet view)</a></li>
+        <li><a href="#projects">Projects / campaigns</a></li>
+        <li><a href="#flo">Flo (AI helper)</a></li>
+        <li><a href="#clients">Working with clients</a></li>
+        <li><a href="#publish">Publishing &amp; platforms</a></li>
+        <li><a href="#measure">Analytics &amp; reports</a></li>
+        <li><a href="#inbox">Instagram comments inbox</a></li>
+        <li><a href="#roles">Who can do what</a></li>
+        <li><a href="#not-yet">Not ready yet</a></li>
+      </ul>
+    </nav>
+
+    <section class="block" id="story">
+      <h2>The story so far <span class="when">2026</span></h2>
+      <p class="intro">Big milestones in order — useful for “when did we get X?”</p>
+      <div class="timeline">
+        <div class="tl"><strong>Feb</strong><span>Rooms, settings, and members — the first Haiku shell.</span></div>
+        <div class="tl"><strong>Jul–Aug</strong><span>Guest access, product unlocked in nav, invites, Instagram connect.</span></div>
+        <div class="tl"><strong>Early Sep</strong><span>Real analytics &amp; feed, better post editor, uploads to cloud storage.</span></div>
+        <div class="tl"><strong>Mid Sep (17–18)</strong><span>Activity log, archive rooms, public client approve link, clearer roles.</span></div>
+        <div class="tl"><strong>19–21 Sep</strong><span>Flo AI room hub, checklists &amp; assignees, projects/campaigns, invite accept flow.</span></div>
+        <div class="tl"><strong>22 Sep</strong><span>Spreadsheet Table view, custom columns, Workrooms (notes boards without social).</span></div>
+        <div class="tl"><strong>23 Sep</strong><span>Client report packs, card history, Threads/Facebook connect, Instagram comment inbox, Guest polish.</span></div>
+        <div class="tl"><strong>24 Sep</strong><span>Projects filter easier to use (compact or wide, smooth animation).</span></div>
+      </div>
+    </section>
+
+    <section class="block" id="rooms">
+      <h2>Rooms &amp; team access <span class="when">Core</span></h2>
+      <p class="intro">A “room” is one workspace for a brand/account’s content.</p>
+      <div class="feat">
+        <h3>Create and manage rooms</h3>
+        <p>Open Haiku, create a room, open settings, manage members, archive old rooms, or duplicate a room setup.</p>
+        <span class="date">Built over Feb → Sep 17</span>
+      </div>
+      <div class="feat">
+        <h3>Invite people the right way</h3>
+        <p>Invites go out by email/notification. People accept or decline before they become members. Pending invites show clearly in the members list.</p>
+        <span class="date">Shipped 21 Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Connect social accounts</h3>
+        <p>Connect Instagram (and more) from Connect Accounts / room settings — live data, not placeholders.</p>
+        <span class="date">Shipped 3 Sep 2026</span>
+      </div>
+    </section>
+
+    <section class="block" id="plan">
+      <h2>Planning the work <span class="when">Create &amp; edit</span></h2>
+      <div class="feat">
+        <h3>Stage-based post editor</h3>
+        <p>Content moves through clear stages: Idea → In Progress → Pending → Approved → Published/Closed. The form only shows what you need at that stage.</p>
+        <span class="date">Redesigned early Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Approve is not the same as publish</h3>
+        <p>Someone can approve creative without publishing. Scheduling and “Publish” live on the Approved stage.</p>
+        <span class="date">Shipped early Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Idea notes &amp; Ask Flo</h3>
+        <p>Jot ideas first. Ask Flo to expand an idea into better copy. Save reusable Flo prompts.</p>
+        <span class="date">Prompts 17 Sep · Ask Flo on Idea 23 Sep</span>
+      </div>
+      <div class="feat">
+        <h3>Media &amp; Google Drive</h3>
+        <p>Upload media straight to cloud storage. Pull files from Google Drive. Media tab upload adds files onto a card properly.</p>
+        <span class="date">Uploads 1 Sep · Drive 3 &amp; 21 Sep · Media tab 23 Sep</span>
+      </div>
+      <div class="feat">
+        <h3>Assignees &amp; checklists</h3>
+        <p>Assign people on a card. Track a checklist with progress on the board.</p>
+        <span class="date">Shipped 20 Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Guests can read, not break things</h3>
+        <p>Guests see a clear “viewing only” experience — they can look and chat, not edit or publish.</p>
+        <span class="date">Polished 23 Sep 2026</span>
+      </div>
+    </section>
+
+    <section class="block" id="board">
+      <h2>Board &amp; calendar <span class="when">Day-to-day</span></h2>
+      <div class="feat">
+        <h3>Kanban board</h3>
+        <p>Drag cards between columns. Cards show thumbnail, labels, project, due date, idea snippet, and schedule/publishing status.</p>
+        <span class="date">Visual refresh early Sep · richer cards 22–23 Sep</span>
+      </div>
+      <div class="feat">
+        <h3>Calendar &amp; preview</h3>
+        <p>See scheduled work on a calendar and preview how posts look before they go out.</p>
+        <span class="date">Part of the room tabs (ongoing)</span>
+      </div>
+      <div class="feat">
+        <h3>Workrooms (notes boards)</h3>
+        <p>Need a simple task/notes board without social publishing? Create a Workroom — same Kanban idea, without Feed/Inbox/Publish clutter.</p>
+        <span class="date">Shipped 22 Sep 2026</span>
+      </div>
+    </section>
+
+    <section class="block" id="table">
+      <h2>Table (spreadsheet view) <span class="when">22 Sep</span></h2>
+      <div class="feat">
+        <h3>Manage many posts at once</h3>
+        <p>Sort and group like a spreadsheet. Multi-select to change status, project, schedule, assignees, or archive in one go — built for agency ops.</p>
+        <span class="date">Shipped 22 Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Custom columns</h3>
+        <p>Admins can rename/reorder room stages. Brands can save status templates and apply them when creating a new room.</p>
+        <span class="date">Shipped 22 Sep 2026</span>
+      </div>
+    </section>
+
+    <section class="block" id="projects">
+      <h2>Projects / campaigns <span class="when">21–24 Sep</span></h2>
+      <div class="feat">
+        <h3>Group cards into campaigns</h3>
+        <p>Create projects like “Summer Glow” or “UGC Collabs”. Filter the board by project. Cards still show under “All”.</p>
+        <span class="date">Shipped 21 Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Create into the project you’re viewing</h3>
+        <p>If you’re filtered to a project, new cards start in that project.</p>
+        <span class="date">Shipped 23 Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Compact or wide project bar</h3>
+        <p>Choose a slim filter strip or a larger card-style bar. Preference is remembered; switching animates smoothly.</p>
+        <span class="date">Shipped 24 Sep 2026</span>
+      </div>
+    </section>
+
+    <section class="block" id="flo">
+      <h2>Flo (AI helper) <span class="when">19–23 Sep</span></h2>
+      <div class="feat">
+        <h3>Room Flo hub</h3>
+        <p>Chat with Flo, set a room voice/persona, and run workflows — all inside the room’s Flo tab.</p>
+        <span class="date">Shipped 19 Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>From chat idea → board card</h3>
+        <p>After Flo brainstorms ideas, you can put them on the Kanban board with one confirm (or pick from a short list).</p>
+        <span class="date">Shipped 21 Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Scheduled &amp; event workflows</h3>
+        <p>Examples: weekly insights, fill calendar gaps, trend ideas. Also “when something happens” — e.g. email a share link when a card hits Pending, or nudge stale pending work.</p>
+        <span class="date">Scheduled 19 Sep · events 23 Sep</span>
+      </div>
+      <div class="soon">Trend ideas are smart suggestions from room voice — not live web search of TikTok/Instagram trends.</div>
+    </section>
+
+    <section class="block" id="clients">
+      <h2>Working with clients <span class="when">17–21 Sep</span></h2>
+      <div class="feat">
+        <h3>Public share link</h3>
+        <p>Send a link so a client can approve or comment without logging into Flit. Managers can get email when they act. Guests on the share link can upload media when allowed.</p>
+        <span class="date">Approve/comment 17 Sep · uploads &amp; emails 20 Sep</span>
+      </div>
+      <div class="feat">
+        <h3>Collaboration review (accept / reject / changes)</h3>
+        <p>Brand–creator collab review is separate from the content pipeline status — clearer for both sides.</p>
+        <span class="date">UI 17 Sep · backend split 21 Sep</span>
+      </div>
+      <div class="feat">
+        <h3>Weekly digest emails</h3>
+        <p>Optional stakeholder digests from room settings — keep clients in the loop without a meeting.</p>
+        <span class="date">Shipped 20 Sep 2026</span>
+      </div>
+    </section>
+
+    <section class="block" id="publish">
+      <h2>Publishing &amp; platforms <span class="when">Ongoing</span></h2>
+      <div class="feat">
+        <h3>Instagram publishing &amp; scheduling</h3>
+        <p>Connect IG, schedule or publish, see progress on the card (“Publishing…”, countdown when scheduled).</p>
+        <span class="date">Core through early Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Threads &amp; Facebook connect</h3>
+        <p>You can connect these platforms in the UI. Full live publish is still rolling out (connect works; publishing is stubbed until Meta Graph is fully live).</p>
+        <span class="date">Connect UI 23 Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>One account per social room</h3>
+        <p>By design: each Social room focuses on one connected account — keeps ops simple and reliable.</p>
+        <span class="date">Product rule locked 22 Sep</span>
+      </div>
+      <div class="soon">TikTok shows as “Coming soon” — not connectable yet.</div>
+    </section>
+
+    <section class="block" id="measure">
+      <h2>Analytics &amp; reports <span class="when">Sep</span></h2>
+      <div class="feat">
+        <h3>Room Analytics</h3>
+        <p>Instagram performance in-room. LinkedIn charts exist but need an extra LinkedIn permission for full data. Flo can add a short insights blurb.</p>
+        <span class="date">IG Analytics 1 Sep · Flo insights 16 Sep</span>
+      </div>
+      <div class="feat">
+        <h3>Client Report Packs</h3>
+        <p>Managers generate a frozen report for 7 / 30 / 90 days (optionally scoped to one project). Copy a public link, or download CSV/PDF — no more screenshot decks.</p>
+        <span class="date">Shipped 23 Sep 2026</span>
+      </div>
+      <div class="feat">
+        <h3>Activity &amp; card history</h3>
+        <p>Room Activity tab shows what changed. Opening a card’s History shows before → after on fields (caption, status, project, due date, and more).</p>
+        <span class="date">Activity tab 17 Sep · History rail 23 Sep</span>
+      </div>
+    </section>
+
+    <section class="block" id="inbox">
+      <h2>Instagram comments inbox <span class="when">23 Sep</span></h2>
+      <div class="feat">
+        <h3>Moderate comments in Haiku</h3>
+        <p>Social rooms get an Inbox tab: see comments, reply, hide/unhide, delete, or turn comments off on a post. Feed also merges organic Instagram posts with what you published from Haiku.</p>
+        <span class="date">Shipped 23 Sep 2026</span>
+      </div>
+      <div class="soon">
+        Instagram DMs are not in the product UI yet (only prepared for Meta app review).
+        Production inbox also needs Meta “Advanced Access” turned on.
+      </div>
+    </section>
+
+    <section class="block" id="roles">
+      <h2>Who can do what <span class="when">Roles</span></h2>
+      <p class="intro">Simple floors (higher roles include lower ones’ read access).</p>
+      <div class="roles">
+        <div class="role">
+          <h3>Guest</h3>
+          <p>Look around, chat. No editing or publishing.</p>
+        </div>
+        <div class="role">
+          <h3>Creator</h3>
+          <p>Create cards, upload, talk to Flo.</p>
+        </div>
+        <div class="role">
+          <h3>Editor</h3>
+          <p>Edit others’ work, move status, publish, moderate inbox, bulk edits.</p>
+        </div>
+        <div class="role">
+          <h3>Manager</h3>
+          <p>Projects, digests, Flo settings/workflows, report packs, integrations.</p>
+        </div>
+        <div class="role">
+          <h3>Admin</h3>
+          <p>Customize status columns and room admin.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="not-yet">
+      <h2>Not ready yet <span class="when">Be honest in demos</span></h2>
+      <div class="feat">
+        <h3>Don’t promise these in a client pitch</h3>
+        <p>
+          • Instagram Direct Messages inside Haiku<br />
+          • Fully live Threads/Facebook publishing (connect is ahead of publish)<br />
+          • TikTok connect<br />
+          • Multi-account publishing inside one Social room<br />
+          • Live web “what’s trending on IG/TikTok right now”<br />
+          • Report packs for Workrooms (Social rooms only)
+        </p>
+        <span class="date">As of 24 Sep 2026</span>
+      </div>
+    </section>
+
+    <footer>
+      Flit Haiku · stakeholder overview · 24 Sep 2026<br />
+      Share the preview link at the top of this page.
+    </footer>
+  </div>
+</body>
+</html>
