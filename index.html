@@ -3,26 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Haiku — What it can do today (Sep 2026)</title>
-  <meta name="description" content="Simple overview of Flit Haiku features for stakeholders, with when each capability shipped." />
+  <title>Haiku pricing — India and Global</title>
+  <meta name="description" content="Haiku plans for India and global: Free, Studio, Agency, Scale. Charge per social room and member. Flo included." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: hsl(42 28% 93%);
-      --paper: hsl(40 33% 98%);
-      --ink: hsl(30 10% 15%);
-      --muted: hsl(30 8% 38%);
-      --line: hsl(32 16% 80%);
-      --gold: hsl(38 82% 58%);
-      --soft: hsl(38 70% 92%);
-      --teal: hsl(174 55% 28%);
+      --bg: hsl(36 28% 97%);
+      --paper: hsl(40 40% 99%);
+      --ink: hsl(24 22% 10%);
+      --muted: hsl(28 10% 40%);
+      --line: hsl(32 14% 82%);
+      --gold: hsl(32 52% 38%);
+      --gold-soft: hsl(36 40% 92%);
+      --gold-line: hsl(32 40% 72%);
       --ok: hsl(152 45% 90%);
       --ok-ink: hsl(152 55% 22%);
+      --warn: hsl(36 90% 92%);
+      --warn-ink: hsl(24 50% 28%);
+      --info: hsl(36 30% 94%);
       --card: #fff;
-      --shadow: 0 1px 2px hsl(30 20% 20% / 0.06), 0 14px 36px hsl(30 25% 20% / 0.08);
+      --shadow: 0 1px 2px hsl(30 20% 20% / 0.06), 0 14px 36px hsl(30 25% 20% / 0.07);
       --sans: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+      --serif: Fraunces, "Iowan Old Style", Palatino, serif;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -33,15 +37,15 @@
       font-size: 16px;
       line-height: 1.55;
       background:
-        radial-gradient(1000px 480px at 10% -10%, hsl(38 82% 58% / 0.2), transparent 55%),
-        radial-gradient(800px 420px at 100% 0%, hsl(32 78% 56% / 0.16), transparent 50%),
+        radial-gradient(1000px 480px at 8% -12%, hsl(32 52% 38% / 0.14), transparent 55%),
+        radial-gradient(800px 420px at 100% 0%, hsl(38 50% 55% / 0.12), transparent 50%),
         var(--bg);
     }
-    a { color: var(--teal); }
-    .wrap { max-width: 880px; margin: 0 auto; padding: 28px 18px 80px; }
+    a { color: var(--gold); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 18px 88px; }
 
     .hero {
-      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      background: color-mix(in srgb, var(--paper) 90%, transparent);
       border: 1px solid var(--line);
       border-radius: 28px;
       box-shadow: var(--shadow);
@@ -53,89 +57,144 @@
       font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
       padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: #fff;
     }
-    .pill.gold { background: var(--soft); border-color: hsl(38 60% 70%); }
-    .pill.ok { background: var(--ok); color: var(--ok-ink); border-color: hsl(152 40% 70%); }
+    .pill.gold { background: var(--gold-soft); border-color: var(--gold-line); }
     h1 {
       margin: 0 0 10px;
-      font-size: clamp(1.85rem, 4vw, 2.4rem);
-      font-weight: 800;
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 560;
       letter-spacing: -0.03em;
-      line-height: 1.15;
+      line-height: 1.12;
     }
-    .lede { margin: 0; color: var(--muted); max-width: 52ch; }
+    h2 {
+      margin: 36px 0 10px;
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 560;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .lede { margin: 0; color: var(--muted); max-width: 62ch; }
     .share {
       margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
       font-size: 14px; color: var(--muted);
     }
     .share strong { color: var(--ink); }
-    .share a { word-break: break-all; }
 
-    .toc {
+    .controls {
+      display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+      margin: 16px 0 6px;
+    }
+    .seg {
+      display: inline-flex; gap: 4px; padding: 4px;
+      background: #fff; border: 1px solid var(--line); border-radius: 999px;
+    }
+    .seg button {
+      appearance: none; border: 0; background: transparent; cursor: pointer;
+      font-family: inherit; font-size: 13px; font-weight: 700;
+      padding: 7px 14px; border-radius: 999px; color: var(--muted);
+    }
+    .seg button.on {
+      background: var(--gold); color: #fff;
+    }
+    .tax { font-size: 13px; color: var(--muted); margin-left: auto; }
+
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .tier {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 18px 16px 16px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .tier.popular { border-color: var(--gold); }
+    .tier-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .tier h4 {
+      margin: 0; font-size: 15px; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase;
+    }
+    .flag {
+      font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em;
+      padding: 3px 8px; border-radius: 999px; background: var(--gold-soft); color: var(--gold);
+    }
+    .price {
+      font-family: var(--serif);
+      font-size: 1.85rem;
+      font-weight: 560;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .price span { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 4px; }
+    .pitch { margin: 0; font-size: 13.5px; color: var(--muted); min-height: 2.8em; }
+    .tier ul { margin: 8px 0 0; padding: 10px 0 0; border-top: 1px solid var(--line); list-style: none; }
+    .tier li { font-size: 13.5px; padding: 3px 0; }
+
+    .note { font-size: 13.5px; color: var(--muted); margin: 12px 0 0; }
+
+    .card {
       background: var(--card); border: 1px solid var(--line); border-radius: 20px;
-      box-shadow: var(--shadow); padding: 16px 18px; margin-bottom: 18px;
+      box-shadow: var(--shadow); padding: 18px 18px 8px; margin: 10px 0 0;
     }
-    .toc h2 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-    .toc ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px 10px; }
-    .toc a {
-      display: block; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 14px;
-      padding: 7px 9px; border-radius: 10px;
-    }
-    .toc a:hover { background: var(--soft); }
+    p { color: var(--ink); }
+    p.muted { color: var(--muted); }
 
-    .block {
-      background: var(--card); border: 1px solid var(--line); border-radius: 20px;
-      box-shadow: var(--shadow); padding: 20px 20px 16px; margin-bottom: 14px;
-    }
-    .block h2 {
-      margin: 0 0 4px; font-size: 1.25rem; letter-spacing: -0.02em;
-      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
-    }
-    .when {
-      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
-      padding: 3px 9px; border-radius: 999px; background: var(--soft);
-    }
-    .intro { margin: 0 0 12px; color: var(--muted); font-size: 15px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0 16px; }
+    th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 700; }
+    td.num, th.num { text-align: right; }
+    td.mid, th.mid { text-align: center; }
+    tbody tr:nth-child(even) { background: hsl(36 30% 97%); }
+    .dash { color: hsl(28 8% 62%); }
 
-    .feat { border-top: 1px solid hsl(32 16% 90%); padding: 12px 0; }
-    .feat:first-of-type { border-top: none; padding-top: 0; }
-    .feat h3 { margin: 0 0 4px; font-size: 16px; font-weight: 700; }
-    .feat p { margin: 0; color: var(--muted); font-size: 15px; }
-    .feat .date {
-      display: inline-block; margin-top: 6px;
-      font-size: 13px; font-weight: 600; color: hsl(30 20% 35%);
-      background: hsl(42 28% 96%); border: 1px solid var(--line);
-      padding: 2px 8px; border-radius: 999px;
+    .callout {
+      border-radius: 16px; padding: 14px 16px; margin: 12px 0 18px;
+      border: 1px solid var(--line);
     }
+    .callout.warn { background: var(--warn); border-color: hsl(32 50% 78%); }
+    .callout.info { background: var(--info); }
+    .callout strong { display: block; margin-bottom: 4px; }
 
-    .timeline { margin: 4px 0 0; padding-left: 16px; border-left: 3px solid hsl(38 60% 75%); }
-    .tl { padding: 0 0 14px 12px; position: relative; }
-    .tl::before {
-      content: ""; position: absolute; left: -21px; top: 6px;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--gold); border: 2px solid #fff;
+    .stats {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 12px 0 16px;
     }
-    .tl strong { display: block; font-size: 14px; }
-    .tl span { color: var(--muted); font-size: 14px; }
-
-    .roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-    .role {
-      background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px;
+    .stat {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px;
     }
-    .role h3 { margin: 0 0 4px; font-size: 14px; }
-    .role p { margin: 0; font-size: 13px; color: var(--muted); }
+    .stat b { display: block; font-family: var(--serif); font-size: 1.35rem; font-weight: 560; }
+    .stat span { font-size: 12.5px; color: var(--muted); }
 
-    .soon {
-      background: hsl(38 80% 94%); border: 1px solid hsl(38 60% 75%);
-      border-radius: 14px; padding: 12px 14px; margin-top: 8px;
-      font-size: 14px; color: hsl(24 70% 28%);
+    .bars { display: grid; gap: 10px; margin: 8px 0 6px; }
+    .bar-row { display: grid; grid-template-columns: 72px 1fr 48px; gap: 10px; align-items: center; font-size: 13px; }
+    .bar-track { height: 10px; background: hsl(36 20% 90%); border-radius: 999px; overflow: hidden; display: flex; }
+    .bar-a { height: 100%; background: var(--gold); }
+    .bar-b { height: 100%; background: hsl(24 22% 22%); }
+
+    .legend { display: flex; gap: 14px; font-size: 12.5px; color: var(--muted); margin-bottom: 8px; }
+    .dot { width: 8px; height: 8px; border-radius: 99px; display: inline-block; margin-right: 6px; vertical-align: middle; }
+    .dot.a { background: var(--gold); }
+    .dot.b { background: hsl(24 22% 22%); }
+
+    footer { margin-top: 32px; font-size: 13px; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .tiers, .stats { grid-template-columns: 1fr 1fr; }
+      .tax { margin-left: 0; }
     }
-
-    footer { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
-
-    @media print {
-      body { background: #fff; }
-      .wrap { max-width: none; }
-      .block, .hero, .toc { box-shadow: none; break-inside: avoid; }
+    @media (max-width: 560px) {
+      .tiers, .stats { grid-template-columns: 1fr; }
+      td.mid, th.mid { min-width: 64px; }
     }
   </style>
 </head>
@@ -143,305 +202,292 @@
   <div class="wrap">
     <header class="hero">
       <div class="pills">
-        <span class="pill gold">Flit Haiku</span>
-        <span class="pill ok">Ready for stakeholders</span>
-        <span class="pill">Updated 24 Sep 2026</span>
+        <span class="pill gold">Haiku</span>
+        <span class="pill">Draft pricing</span>
+        <span class="pill">India + Global</span>
       </div>
-      <h1>What Haiku can do today</h1>
-      <p class="lede">
-        A plain-English map of Haiku for brands and agencies —
-        planning posts, collaborating with creators, publishing, and reporting —
-        plus roughly when each piece shipped.
-      </p>
-      <div class="share">
-        <strong>Share this page:</strong><br />
-        <a id="share-link" href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/notsoocool/haiku-features/main/index.html">Open with htmlpreview</a>
-        <br /><br />
-        <span style="font-size:13px">
-          Direct site: <a href="https://notsoocool.github.io/haiku-features/">notsoocool.github.io/haiku-features</a>
-          · Repo: <a href="https://github.com/notsoocool/haiku-features">github.com/notsoocool/haiku-features</a>
-        </span>
+      <h1>Pricing that charges for rooms and people, not for Flo</h1>
+      <p class="lede">Two things carry cost and value: social rooms and members. Workspaces stay free on every paid plan. Flo is included, never a second bill.</p>
+      <div class="controls">
+        <div class="seg" role="group" aria-label="Region">
+          <button id="btn-in" class="on" type="button">India</button>
+          <button id="btn-gl" type="button">Global</button>
+        </div>
+        <div class="seg" role="group" aria-label="Billing">
+          <button id="btn-mo" class="on" type="button">Monthly</button>
+          <button id="btn-yr" type="button">Annual</button>
+        </div>
+        <span class="tax" id="tax-note">INR, exclusive of 18% GST</span>
       </div>
+      <p class="share">Share this page: <strong>https://notsoocool.github.io/haiku-features/</strong></p>
     </header>
 
-    <nav class="toc">
-      <h2>Jump to a section</h2>
-      <ul>
-        <li><a href="#story">The story so far</a></li>
-        <li><a href="#rooms">Rooms &amp; team access</a></li>
-        <li><a href="#plan">Planning the work</a></li>
-        <li><a href="#board">Board &amp; calendar</a></li>
-        <li><a href="#table">Table (spreadsheet view)</a></li>
-        <li><a href="#projects">Projects / campaigns</a></li>
-        <li><a href="#flo">Flo (AI helper)</a></li>
-        <li><a href="#clients">Working with clients</a></li>
-        <li><a href="#publish">Publishing &amp; platforms</a></li>
-        <li><a href="#measure">Analytics &amp; reports</a></li>
-        <li><a href="#inbox">Instagram comments inbox</a></li>
-        <li><a href="#roles">Who can do what</a></li>
-        <li><a href="#not-yet">Not ready yet</a></li>
-      </ul>
-    </nav>
+    <section class="tiers" id="tiers"></section>
+    <p class="note" id="enterprise-note"></p>
 
-    <section class="block" id="story">
-      <h2>The story so far <span class="when">2026</span></h2>
-      <p class="intro">Big milestones in order — useful for “when did we get X?”</p>
-      <div class="timeline">
-        <div class="tl"><strong>Feb</strong><span>Rooms, settings, and members — the first Haiku shell.</span></div>
-        <div class="tl"><strong>Jul–Aug</strong><span>Guest access, product unlocked in nav, invites, Instagram connect.</span></div>
-        <div class="tl"><strong>Early Sep</strong><span>Real analytics &amp; feed, better post editor, uploads to cloud storage.</span></div>
-        <div class="tl"><strong>Mid Sep (17–18)</strong><span>Activity log, archive rooms, public client approve link, clearer roles.</span></div>
-        <div class="tl"><strong>19–21 Sep</strong><span>Flo AI room hub, checklists &amp; assignees, projects/campaigns, invite accept flow.</span></div>
-        <div class="tl"><strong>22 Sep</strong><span>Spreadsheet Table view, custom columns, Workrooms (notes boards without social).</span></div>
-        <div class="tl"><strong>23 Sep</strong><span>Client report packs, card history, Threads/Facebook connect, Instagram comment inbox, Guest polish.</span></div>
-        <div class="tl"><strong>24 Sep</strong><span>Projects filter easier to use (compact or wide, smooth animation).</span></div>
-      </div>
-    </section>
+    <h2>Why Global is priced above India</h2>
+    <p class="muted">Global sits at about 2.2× the India price at every tier, on purpose. Agency is ₹4,499 in India against $119 globally — about ₹9,900 at 83 to the dollar. India is price-led and volume-led. The US and EU already pay $199–$399 a seat for Sprout and Later. Same product, different willingness to pay.</p>
+    <p class="muted">Enforce this at the billing entity, not the browser. INR needs an Indian billing address with a GSTIN or an Indian card. Everyone else is on the global card. Gate on IP and the India price leaks worldwide through VPNs within a month.</p>
 
-    <section class="block" id="rooms">
-      <h2>Rooms &amp; team access <span class="when">Core</span></h2>
-      <p class="intro">A “room” is one workspace for a brand/account’s content.</p>
-      <div class="feat">
-        <h3>Create and manage rooms</h3>
-        <p>Open Haiku, create a room, open settings, manage members, archive old rooms, or duplicate a room setup.</p>
-        <span class="date">Built over Feb → Sep 17</span>
-      </div>
-      <div class="feat">
-        <h3>Invite people the right way</h3>
-        <p>Invites go out by email/notification. People accept or decline before they become members. Pending invites show clearly in the members list.</p>
-        <span class="date">Shipped 21 Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Connect social accounts</h3>
-        <p>Connect Instagram (and more) from Connect Accounts / room settings — live data, not placeholders.</p>
-        <span class="date">Shipped 3 Sep 2026</span>
-      </div>
-    </section>
+    <h2>Add-ons</h2>
+    <p class="muted">Everything bills in units so the prorated seat flow you already have can handle rooms too. One member is one unit. One social room is four. Bundled tiers price units below list, so upgrading stays cheaper than stacking add-ons.</p>
+    <div class="card">
+      <table>
+        <thead><tr><th>Add-on</th><th class="num">Price</th><th>Notes</th></tr></thead>
+        <tbody id="addons"></tbody>
+      </table>
+    </div>
 
-    <section class="block" id="plan">
-      <h2>Planning the work <span class="when">Create &amp; edit</span></h2>
-      <div class="feat">
-        <h3>Stage-based post editor</h3>
-        <p>Content moves through clear stages: Idea → In Progress → Pending → Approved → Published/Closed. The form only shows what you need at that stage.</p>
-        <span class="date">Redesigned early Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Approve is not the same as publish</h3>
-        <p>Someone can approve creative without publishing. Scheduling and “Publish” live on the Approved stage.</p>
-        <span class="date">Shipped early Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Idea notes &amp; Ask Flo</h3>
-        <p>Jot ideas first. Ask Flo to expand an idea into better copy. Save reusable Flo prompts.</p>
-        <span class="date">Prompts 17 Sep · Ask Flo on Idea 23 Sep</span>
-      </div>
-      <div class="feat">
-        <h3>Media &amp; Google Drive</h3>
-        <p>Upload media straight to cloud storage. Pull files from Google Drive. Media tab upload adds files onto a card properly.</p>
-        <span class="date">Uploads 1 Sep · Drive 3 &amp; 21 Sep · Media tab 23 Sep</span>
-      </div>
-      <div class="feat">
-        <h3>Assignees &amp; checklists</h3>
-        <p>Assign people on a card. Track a checklist with progress on the board.</p>
-        <span class="date">Shipped 20 Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Guests can read, not break things</h3>
-        <p>Guests see a clear “viewing only” experience — they can look and chat, not edit or publish.</p>
-        <span class="date">Polished 23 Sep 2026</span>
-      </div>
-    </section>
+    <h2>Flo economics</h2>
+    <p class="muted" id="flo-lede"></p>
+    <div class="stats">
+      <div class="stat"><b>1 credit</b><span>One Flo action</span></div>
+      <div class="stat"><b id="st-cost"></b><span>Our cost per action</span></div>
+      <div class="stat"><b id="st-markup"></b><span>Markup on top-up packs</span></div>
+      <div class="stat"><b id="st-margin"></b><span>Gross margin after Flo</span></div>
+    </div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th class="num">Credits included</th>
+            <th class="num">Flo cost to us</th>
+            <th class="num">Share of revenue</th>
+          </tr>
+        </thead>
+        <tbody id="flo-rows"></tbody>
+      </table>
+    </div>
+    <h3>Flo cost as a share of subscription revenue</h3>
+    <div class="legend">
+      <span><i class="dot a"></i>India</span>
+      <span><i class="dot b"></i>Global</span>
+    </div>
+    <div class="bars">
+      <div class="bar-row"><span>Studio</span><div class="bar-track"><div class="bar-a" style="width:6%"></div><div class="bar-b" style="width:2.7%"></div></div><span>6 / 2.7</span></div>
+      <div class="bar-row"><span>Agency</span><div class="bar-track"><div class="bar-a" style="width:8%"></div><div class="bar-b" style="width:3.5%"></div></div><span>8 / 3.5</span></div>
+      <div class="bar-row"><span>Scale</span><div class="bar-track"><div class="bar-a" style="width:10%"></div><div class="bar-b" style="width:4.7%"></div></div><span>10 / 4.7</span></div>
+    </div>
+    <p class="note">Figures are percent of that tier’s monthly price if the full Flo allowance is used. gpt-4o-mini, about 2k in / 400 out per action, 83 INR to the dollar. Real usage runs well below full consumption.</p>
+    <div class="callout warn">
+      <strong>This holds only while Flo stays text on mini.</strong>
+      Vision, audio, or a frontier model changes the cost per action by an order of magnitude. Re-price the allowance before enabling any of them.
+    </div>
 
-    <section class="block" id="board">
-      <h2>Board &amp; calendar <span class="when">Day-to-day</span></h2>
-      <div class="feat">
-        <h3>Kanban board</h3>
-        <p>Drag cards between columns. Cards show thumbnail, labels, project, due date, idea snippet, and schedule/publishing status.</p>
-        <span class="date">Visual refresh early Sep · richer cards 22–23 Sep</span>
-      </div>
-      <div class="feat">
-        <h3>Calendar &amp; preview</h3>
-        <p>See scheduled work on a calendar and preview how posts look before they go out.</p>
-        <span class="date">Part of the room tabs (ongoing)</span>
-      </div>
-      <div class="feat">
-        <h3>Workrooms (notes boards)</h3>
-        <p>Need a simple task/notes board without social publishing? Create a Workroom — same Kanban idea, without Feed/Inbox/Publish clutter.</p>
-        <span class="date">Shipped 22 Sep 2026</span>
-      </div>
-    </section>
+    <h2>Full feature matrix</h2>
+    <div id="matrix"></div>
 
-    <section class="block" id="table">
-      <h2>Table (spreadsheet view) <span class="when">22 Sep</span></h2>
-      <div class="feat">
-        <h3>Manage many posts at once</h3>
-        <p>Sort and group like a spreadsheet. Multi-select to change status, project, schedule, assignees, or archive in one go — built for agency ops.</p>
-        <span class="date">Shipped 22 Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Custom columns</h3>
-        <p>Admins can rename/reorder room stages. Brands can save status templates and apply them when creating a new room.</p>
-        <span class="date">Shipped 22 Sep 2026</span>
-      </div>
-    </section>
+    <h2>How this stays friendly</h2>
+    <p class="muted">The risk with charging per room and per member is that it reads as nickel-and-diming. Four choices defuse that. Workspaces are unlimited and free on every paid plan, so internal work never costs more. Client and guest viewers are free and unlimited — the loudest agency complaint about competitors. Flo is described as included, never as a meter. And going over a limit never deletes anything.</p>
+    <div class="callout info">
+      <strong>Downgrades go read-only, never destructive.</strong>
+      Rooms and workspaces past the limit lock with a restore prompt. Data stays. A customer who churns and returns finds their board as they left it.
+    </div>
 
-    <section class="block" id="projects">
-      <h2>Projects / campaigns <span class="when">21–24 Sep</span></h2>
-      <div class="feat">
-        <h3>Group cards into campaigns</h3>
-        <p>Create projects like “Summer Glow” or “UGC Collabs”. Filter the board by project. Cards still show under “All”.</p>
-        <span class="date">Shipped 21 Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Create into the project you’re viewing</h3>
-        <p>If you’re filtered to a project, new cards start in that project.</p>
-        <span class="date">Shipped 23 Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Compact or wide project bar</h3>
-        <p>Choose a slim filter strip or a larger card-style bar. Preference is remembered; switching animates smoothly.</p>
-        <span class="date">Shipped 24 Sep 2026</span>
-      </div>
-    </section>
+    <h2>Rollout</h2>
+    <div class="card">
+      <table>
+        <thead><tr><th>Step</th><th>What happens</th><th>Why this order</th></tr></thead>
+        <tbody>
+          <tr><td>1. Meter Flo</td><td>Log tokens and model on every Flo call. Charge nothing.</td><td>Two weeks of real data confirms cost per action before you promise an allowance.</td></tr>
+          <tr><td>2. Trim cost</td><td>Chat history from 20 turns to 8–12. Stop the automatic board-extract call.</td><td>Cuts cost per action before it is sold. Ships with the gate, not after.</td></tr>
+          <tr><td>3. Unit model</td><td>Track seats and rooms on Subscription. Quantity becomes total units.</td><td>Reuses the prorated add and refund code already in place.</td></tr>
+          <tr><td>4. Gate</td><td>Room create, member add, and every Flo entry point check units and pool.</td><td>Nothing is billable until it can be enforced.</td></tr>
+          <tr><td>5. Grandfather</td><td>Existing free brands keep current rooms read-write for 90 days with an upgrade banner.</td><td>Turning a free product paid overnight is how you lose the early base.</td></tr>
+          <tr><td>6. Global launch</td><td>Turn on USD pricing with billing-entity checks.</td><td>Prove pricing in India first, where a mistake is cheaper.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <section class="block" id="flo">
-      <h2>Flo (AI helper) <span class="when">19–23 Sep</span></h2>
-      <div class="feat">
-        <h3>Room Flo hub</h3>
-        <p>Chat with Flo, set a room voice/persona, and run workflows — all inside the room’s Flo tab.</p>
-        <span class="date">Shipped 19 Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>From chat idea → board card</h3>
-        <p>After Flo brainstorms ideas, you can put them on the Kanban board with one confirm (or pick from a short list).</p>
-        <span class="date">Shipped 21 Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Scheduled &amp; event workflows</h3>
-        <p>Examples: weekly insights, fill calendar gaps, trend ideas. Also “when something happens” — e.g. email a share link when a card hits Pending, or nudge stale pending work.</p>
-        <span class="date">Scheduled 19 Sep · events 23 Sep</span>
-      </div>
-      <div class="soon">Trend ideas are smart suggestions from room voice — not live web search of TikTok/Instagram trends.</div>
-    </section>
-
-    <section class="block" id="clients">
-      <h2>Working with clients <span class="when">17–21 Sep</span></h2>
-      <div class="feat">
-        <h3>Public share link</h3>
-        <p>Send a link so a client can approve or comment without logging into Flit. Managers can get email when they act. Guests on the share link can upload media when allowed.</p>
-        <span class="date">Approve/comment 17 Sep · uploads &amp; emails 20 Sep</span>
-      </div>
-      <div class="feat">
-        <h3>Collaboration review (accept / reject / changes)</h3>
-        <p>Brand–creator collab review is separate from the content pipeline status — clearer for both sides.</p>
-        <span class="date">UI 17 Sep · backend split 21 Sep</span>
-      </div>
-      <div class="feat">
-        <h3>Weekly digest emails</h3>
-        <p>Optional stakeholder digests from room settings — keep clients in the loop without a meeting.</p>
-        <span class="date">Shipped 20 Sep 2026</span>
-      </div>
-    </section>
-
-    <section class="block" id="publish">
-      <h2>Publishing &amp; platforms <span class="when">Ongoing</span></h2>
-      <div class="feat">
-        <h3>Instagram publishing &amp; scheduling</h3>
-        <p>Connect IG, schedule or publish, see progress on the card (“Publishing…”, countdown when scheduled).</p>
-        <span class="date">Core through early Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Threads &amp; Facebook connect</h3>
-        <p>You can connect these platforms in the UI. Full live publish is still rolling out (connect works; publishing is stubbed until Meta Graph is fully live).</p>
-        <span class="date">Connect UI 23 Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>One account per social room</h3>
-        <p>By design: each Social room focuses on one connected account — keeps ops simple and reliable.</p>
-        <span class="date">Product rule locked 22 Sep</span>
-      </div>
-      <div class="soon">TikTok shows as “Coming soon” — not connectable yet.</div>
-    </section>
-
-    <section class="block" id="measure">
-      <h2>Analytics &amp; reports <span class="when">Sep</span></h2>
-      <div class="feat">
-        <h3>Room Analytics</h3>
-        <p>Instagram performance in-room. LinkedIn charts exist but need an extra LinkedIn permission for full data. Flo can add a short insights blurb.</p>
-        <span class="date">IG Analytics 1 Sep · Flo insights 16 Sep</span>
-      </div>
-      <div class="feat">
-        <h3>Client Report Packs</h3>
-        <p>Managers generate a frozen report for 7 / 30 / 90 days (optionally scoped to one project). Copy a public link, or download CSV/PDF — no more screenshot decks.</p>
-        <span class="date">Shipped 23 Sep 2026</span>
-      </div>
-      <div class="feat">
-        <h3>Activity &amp; card history</h3>
-        <p>Room Activity tab shows what changed. Opening a card’s History shows before → after on fields (caption, status, project, due date, and more).</p>
-        <span class="date">Activity tab 17 Sep · History rail 23 Sep</span>
-      </div>
-    </section>
-
-    <section class="block" id="inbox">
-      <h2>Instagram comments inbox <span class="when">23 Sep</span></h2>
-      <div class="feat">
-        <h3>Moderate comments in Haiku</h3>
-        <p>Social rooms get an Inbox tab: see comments, reply, hide/unhide, delete, or turn comments off on a post. Feed also merges organic Instagram posts with what you published from Haiku.</p>
-        <span class="date">Shipped 23 Sep 2026</span>
-      </div>
-      <div class="soon">
-        Instagram DMs are not in the product UI yet (only prepared for Meta app review).
-        Production inbox also needs Meta “Advanced Access” turned on.
-      </div>
-    </section>
-
-    <section class="block" id="roles">
-      <h2>Who can do what <span class="when">Roles</span></h2>
-      <p class="intro">Simple floors (higher roles include lower ones’ read access).</p>
-      <div class="roles">
-        <div class="role">
-          <h3>Guest</h3>
-          <p>Look around, chat. No editing or publishing.</p>
-        </div>
-        <div class="role">
-          <h3>Creator</h3>
-          <p>Create cards, upload, talk to Flo.</p>
-        </div>
-        <div class="role">
-          <h3>Editor</h3>
-          <p>Edit others’ work, move status, publish, moderate inbox, bulk edits.</p>
-        </div>
-        <div class="role">
-          <h3>Manager</h3>
-          <p>Projects, digests, Flo settings/workflows, report packs, integrations.</p>
-        </div>
-        <div class="role">
-          <h3>Admin</h3>
-          <p>Customize status columns and room admin.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" id="not-yet">
-      <h2>Not ready yet <span class="when">Be honest in demos</span></h2>
-      <div class="feat">
-        <h3>Don’t promise these in a client pitch</h3>
-        <p>
-          • Instagram Direct Messages inside Haiku<br />
-          • Fully live Threads/Facebook publishing (connect is ahead of publish)<br />
-          • TikTok connect<br />
-          • Multi-account publishing inside one Social room<br />
-          • Live web “what’s trending on IG/TikTok right now”<br />
-          • Report packs for Workrooms (Social rooms only)
-        </p>
-        <span class="date">As of 24 Sep 2026</span>
-      </div>
-    </section>
+    <h2>What to watch after launch</h2>
+    <p class="muted">Free-to-paid conversion should sit above 4%, and the second social room is the trigger to watch most closely. Share of paid brands exceeding their Flo pool: below 5% means the allowance feels free; above 15% means you are gating a feature you marketed as included. Net revenue retention above 110% tells you rooms and seats are growing inside accounts. Watch Flo cost as a share of revenue against 6–10% in India and 3–5% globally. Treat drift upward as a pricing bug, not an infra one.</p>
 
     <footer>
-      Flit Haiku · stakeholder overview · 24 Sep 2026<br />
-      Share the preview link at the top of this page.
+      Prices modeled for launch. Feature rows reflect what ships in Haiku today across eight connected platforms, Flo chat, actions, workflows, and per-channel analytics.
     </footer>
   </div>
+
+  <script>
+    const TIERS = [
+      { id: "free", name: "Free", pitch: "Try the real product, one room deep.", rooms: "1 social room", workspaces: "2 workspaces", members: "2 members", credits: 100, monthly: { india: 0, global: 0 }, annual: { india: 0, global: 0 } },
+      { id: "studio", name: "Studio", pitch: "Solo creators and single-brand teams.", rooms: "1 social room", workspaces: "Unlimited workspaces", members: "3 members", credits: 1500, monthly: { india: 1499, global: 39 }, annual: { india: 1249, global: 32 } },
+      { id: "agency", name: "Agency", pitch: "Agencies running several brands with clients in the loop.", rooms: "3 social rooms", workspaces: "Unlimited workspaces", members: "5 members", credits: 6000, monthly: { india: 4499, global: 119 }, annual: { india: 3749, global: 99 }, popular: true },
+      { id: "scale", name: "Scale", pitch: "Large in-house teams and multi-market rollouts.", rooms: "8 social rooms", workspaces: "Unlimited workspaces", members: "15 members", credits: 20000, monthly: { india: 11999, global: 299 }, annual: { india: 9999, global: 249 } },
+    ];
+
+    const FEATURES = [
+      ["Workspace and rooms", [
+        ["Workspaces (internal Kanban)", "2", "Unlimited", "Unlimited", "Unlimited"],
+        ["Social rooms (publishing)", "1", "1 included", "3 included", "8 included"],
+        ["Paid members", "2", "3 included", "5 included", "15 included"],
+        ["Client / guest viewers", "—", "Unlimited", "Unlimited", "Unlimited"],
+        ["Projects, statuses, table view", "Basic board", "Yes", "Yes", "Yes"],
+        ["Checklists and assignees", "Yes", "Yes", "Yes", "Yes"],
+        ["Archive and restore", "—", "Yes", "Yes", "Yes"],
+        ["Duplicate a room", "—", "—", "Yes", "Yes"],
+      ]],
+      ["Publishing", [
+        ["Connected channels per room", "2", "5", "All 8", "All 8"],
+        ["Instagram, Facebook, Threads", "Yes", "Yes", "Yes", "Yes"],
+        ["LinkedIn, YouTube, X", "—", "Yes", "Yes", "Yes"],
+        ["Reddit, Pinterest", "—", "—", "Yes", "Yes"],
+        ["Scheduled posts per month", "30", "300", "Unlimited", "Unlimited"],
+        ["Feed planner and calendar", "Yes", "Yes", "Yes", "Yes"],
+        ["Instagram inbox", "—", "Yes", "Yes", "Yes"],
+        ["Media library and Drive import", "1 GB", "25 GB", "200 GB", "1 TB"],
+      ]],
+      ["Clients and review", [
+        ["Share link for the board", "—", "Yes", "Yes", "Yes"],
+        ["Password on share link", "—", "—", "Yes", "Yes"],
+        ["Guest comments and approvals", "—", "Yes", "Yes", "Yes"],
+        ["Request changes / reject", "—", "Yes", "Yes", "Yes"],
+        ["Card history (before and after)", "—", "—", "Yes", "Yes"],
+        ["Room activity log", "—", "—", "Yes", "Yes"],
+        ["Digest emails", "—", "Yes", "Yes", "Yes"],
+      ]],
+      ["Flo (AI)", [
+        ["Flo credits per month", "100", "1,500", "6,000", "20,000"],
+        ["Flo chat", "Yes", "Yes", "Yes", "Yes"],
+        ["Captions and hashtags", "Yes", "Yes", "Yes", "Yes"],
+        ["Brand persona", "—", "Yes", "Yes", "Yes"],
+        ["Saved prompt templates", "—", "Yes", "Yes", "Yes"],
+        ["Actions: trends, calendar, repurpose", "—", "Yes", "Yes", "Yes"],
+        ["Flo puts work on the board", "—", "Yes", "Yes", "Yes"],
+        ["Automations (workflows)", "—", "—", "Yes", "Yes"],
+        ["Top-up credit packs", "—", "Yes", "Yes", "Yes"],
+      ]],
+      ["Analytics", [
+        ["Per-channel analytics", "7 days", "90 days", "13 months", "13 months"],
+        ["Flo insights", "—", "Yes", "Yes", "Yes"],
+        ["Shareable report pack", "—", "—", "Yes", "Yes"],
+        ["Export to CSV / Excel", "—", "Yes", "Yes", "Yes"],
+      ]],
+      ["Account", [
+        ["Roles and permissions", "Basic", "Yes", "Yes", "Yes"],
+        ["Hashtag groups", "—", "Yes", "Yes", "Yes"],
+        ["API access", "—", "—", "—", "Yes"],
+        ["Support", "Community", "Email", "Priority email", "Priority + onboarding"],
+      ]],
+    ];
+
+    const FLO = {
+      india: { studio: ["1,500", "₹90", "6.0%"], agency: ["6,000", "₹360", "8.0%"], scale: ["20,000", "₹1,200", "10.0%"] },
+      global: { studio: ["1,500", "$1.05", "2.7%"], agency: ["6,000", "$4.20", "3.5%"], scale: ["20,000", "$14.00", "4.7%"] },
+    };
+
+    let region = "india";
+    let billing = "monthly";
+
+    function money(n) {
+      if (n === 0) return "Free";
+      if (region === "india") return "₹" + n.toLocaleString("en-IN");
+      return "$" + n.toLocaleString("en-US");
+    }
+
+    function renderTiers() {
+      const el = document.getElementById("tiers");
+      el.innerHTML = TIERS.map((t) => {
+        const price = billing === "annual" ? t.annual[region] : t.monthly[region];
+        const free = t.monthly[region] === 0;
+        const annualNote = !free && billing === "annual" ? `<div class="note" style="margin:0">Billed yearly. Two months free.</div>` : "";
+        return `<article class="tier${t.popular ? " popular" : ""}">
+          <div class="tier-top"><h4>${t.name}</h4>${t.popular ? `<span class="flag">Most popular</span>` : ""}</div>
+          <div class="price">${money(price)}${free ? "" : `<span>per month</span>`}</div>
+          ${annualNote}
+          <p class="pitch">${t.pitch}</p>
+          <ul>
+            <li>${t.workspaces}</li>
+            <li>${t.rooms}</li>
+            <li>${t.members}</li>
+            <li>${t.credits.toLocaleString("en-US")} Flo credits a month</li>
+          </ul>
+        </article>`;
+      }).join("");
+
+      document.getElementById("enterprise-note").textContent =
+        "Enterprise is quoted: SSO, contracts, security review, and a named contact. Floor is " +
+        (region === "india" ? "₹40,000" : "$1,200") + " a month.";
+
+      document.getElementById("tax-note").textContent =
+        region === "india" ? "INR, exclusive of 18% GST" : "USD, exclusive of local sales tax and VAT";
+    }
+
+    function renderAddons() {
+      const unit = region === "india" ? 349 : 9;
+      const room = region === "india" ? 1399 : 36;
+      const pack = region === "india" ? 749 : 19;
+      const rows = [
+        ["Extra member", money(unit) + " / month", "1 unit. Prorated, refunded on removal."],
+        ["Extra social room", money(room) + " / month", "4 units. Same proration."],
+        ["Extra workspace", "Free", "Unlimited on every paid plan."],
+        ["Client / guest viewer", "Free", "Comment and approve, no seat."],
+        ["Flo top-up, 5,000 credits", money(pack) + " one-time", "Never expires. Used after the monthly pool."],
+      ];
+      document.getElementById("addons").innerHTML = rows.map((r) =>
+        `<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td>${r[2]}</td></tr>`
+      ).join("");
+    }
+
+    function renderFlo() {
+      document.getElementById("flo-lede").textContent =
+        region === "india"
+          ? "Flo runs on gpt-4o-mini at roughly ₹0.06 per action. That is why bundling it is the right call: even Scale’s 20,000-credit allowance costs about a tenth of the subscription. Most brands never touch the ceiling. Unused credits expire each cycle — that breakage is revenue already collected."
+          : "Flo runs on gpt-4o-mini at roughly $0.0007 per action. That is why bundling it is the right call: even Scale’s allowance is a small slice of $299. Most brands never touch the ceiling. Unused credits expire each cycle — that breakage is revenue already collected.";
+      document.getElementById("st-cost").textContent = region === "india" ? "₹0.06" : "$0.0007";
+      document.getElementById("st-markup").textContent = region === "india" ? "2.5×" : "3.6×";
+      document.getElementById("st-margin").textContent = region === "india" ? "90%+" : "95%+";
+      const f = FLO[region];
+      document.getElementById("flo-rows").innerHTML = [
+        ["Studio", ...f.studio],
+        ["Agency", ...f.agency],
+        ["Scale", ...f.scale],
+      ].map((r) => `<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="num">${r[2]}</td><td class="num">${r[3]}</td></tr>`).join("");
+    }
+
+    function cell(v) {
+      return v === "—" ? `<span class="dash">—</span>` : v;
+    }
+
+    function renderMatrix() {
+      document.getElementById("matrix").innerHTML = FEATURES.map(([group, rows]) => `
+        <h3>${group}</h3>
+        <div class="card">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th class="mid">Free</th>
+                <th class="mid">Studio</th>
+                <th class="mid">Agency</th>
+                <th class="mid">Scale</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map((r) => `<tr><td>${cell(r[0])}</td><td class="mid">${cell(r[1])}</td><td class="mid">${cell(r[2])}</td><td class="mid">${cell(r[3])}</td><td class="mid">${cell(r[4])}</td></tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+      `).join("");
+    }
+
+    function render() {
+      renderTiers();
+      renderAddons();
+      renderFlo();
+    }
+
+    function setOn(id, on) {
+      document.getElementById(id).classList.toggle("on", on);
+    }
+
+    document.getElementById("btn-in").onclick = () => { region = "india"; setOn("btn-in", true); setOn("btn-gl", false); render(); };
+    document.getElementById("btn-gl").onclick = () => { region = "global"; setOn("btn-in", false); setOn("btn-gl", true); render(); };
+    document.getElementById("btn-mo").onclick = () => { billing = "monthly"; setOn("btn-mo", true); setOn("btn-yr", false); render(); };
+    document.getElementById("btn-yr").onclick = () => { billing = "annual"; setOn("btn-mo", false); setOn("btn-yr", true); render(); };
+
+    renderMatrix();
+    render();
+  </script>
 </body>
 </html>
